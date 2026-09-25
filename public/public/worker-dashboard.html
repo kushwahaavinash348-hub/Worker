@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Worker Dashboard</title>
+
+<link rel="stylesheet"
+href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Worker Dashboard</h2>
+
+<div id="profile">
+Loading...
+</div>
+
+<button onclick="logout()">
+Logout
+</button>
+
+</div>
+
+<script>
+
+async function loadProfile() {
+
+    const token =
+        localStorage.getItem("workerToken");
+
+    if (!token) {
+
+        window.location =
+            "worker-login.html";
+
+        return;
+
+    }
+
+    const response =
+        await fetch(
+            "/api/worker/profile",
+            {
+                headers: {
+                    "Authorization":
+                    "Bearer " + token
+                }
+            }
+        );
+
+    const worker =
+        await response.json();
+
+    document
+    .getElementById("profile")
+    .innerHTML = `
+
+        <h3>${worker.name}</h3>
+
+        <p>
+        Worker ID:
+        <b>${worker.worker_id}</b>
+        </p>
+
+        <p>
+        Mobile:
+        ${worker.phone}
+        </p>
+
+        <p>
+        काम:
+        ${worker.work}
+        </p>
+
+        <p>
+        शहर:
+        ${worker.city}
+        </p>
+
+        <p>
+        Experience:
+        ${worker.experience} Years
+        </p>
+
+        <p>
+        ${worker.description || ""}
+        </p>
+
+    `;
+
+}
+
+function logout() {
+
+    localStorage.removeItem(
+        "workerToken"
+    );
+
+    window.location =
+        "worker-login.html";
+
+}
+
+loadProfile();
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Worker Registration</title>
+
+<link rel="stylesheet"
+href="style.css">
+
+</head>
+
+<body>
+
+<div class="form-box">
+
+<h2>Worker Registration</h2>
+
+<form id="registerForm">
+
+<input
+name="name"
+placeholder="पूरा नाम"
+required>
+
+<input
+name="phone"
+placeholder="मोबाइल नंबर"
+required>
+
+<input
+name="password"
+type="password"
+placeholder="Password"
+required>
+
+<input
+name="work"
+placeholder="काम जैसे Mason, Carpenter"
+required>
+
+<input
+name="city"
+placeholder="शहर"
+required>
+
+<input
+name="experience"
+type="number"
+placeholder="Experience (Years)">
+
+<textarea
+name="description"
+placeholder="अपने बारे में"></textarea>
+
+<button>
+Register
+</button>
+
+</form>
+
+<p id="result"></p>
+
+</div>
+
+<script>
+
+document
+.getElementById("registerForm")
+.addEventListener("submit", async function(e) {
+
+    e.preventDefault();
+
+    const data =
+        Object.fromEntries(
+            new FormData(this)
+        );
+
+    const response =
+        await fetch(
+            "/api/workers/register",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type":
+                    "application/json"
+                },
+
+                body: JSON.stringify(data)
+            }
+        );
+
+    const result =
+        await response.json();
+
+    document
+    .getElementById("result")
+    .innerText =
+        result.message +
+        (result.worker_id
+            ? " आपका Worker ID: " +
+              result.worker_id
+            : "");
+
+});
+
+</script>
+
+</body>
+
+</html>

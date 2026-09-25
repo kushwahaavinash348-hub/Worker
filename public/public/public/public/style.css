@@ -1,0 +1,105 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f2f5f8;
+}
+
+.container,
+.form-box {
+
+    width: 90%;
+    max-width: 500px;
+
+    margin: 50px auto;
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0,0,0,0.1);
+}
+
+h1,
+h2 {
+    text-align: center;
+}
+
+input,
+textarea {
+
+    width: 100%;
+
+    padding: 13px;
+
+    margin: 8px 0;
+
+    border: 1px solid #ccc;
+
+    border-radius: 7px;
+
+    font-size: 16px;
+}
+
+textarea {
+
+    min-height: 100px;
+
+}
+
+button,
+.buttons a {
+
+    display: block;
+
+    width: 100%;
+
+    padding: 13px;
+
+    margin-top: 10px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #1464f4;
+
+    color: white;
+
+    font-size: 16px;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+.worker-card {
+
+    background: #f8f8f8;
+
+    padding: 15px;
+
+    margin-top: 15px;
+
+    border-radius: 10px;
+
+    border: 1px solid #ddd;
+}
+
+#result {
+
+    margin-top: 15px;
+
+    text-align: center;
+
+    font-weight: bold;
+}
